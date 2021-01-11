@@ -1,0 +1,15 @@
+---
+application:
+  name: "qovery-app-1-same-router"
+  project: "qovery-app-1-same-router"
+  organization: "QoveryCommunity"
+databases:
+  - type: "MYSQL"
+    name: "test_db"
+    version: "5.7"
+routers:
+  - name: "main-qovery-app-1-same-router"
+    routes:
+      - application_name: "qovery-app-1-same-router"
+        paths:
+          - "/*"

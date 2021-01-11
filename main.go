@@ -21,9 +21,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 func main() {
 
 	router := gin.Default()
-	router.GET("/hello", func(c *gin.Context) {
-		c.String(http.StatusOK, "Hello from %v", "Gin")
-	})
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "views/index.html", nil)
 	})
