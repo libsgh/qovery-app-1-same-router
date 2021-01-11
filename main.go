@@ -7,6 +7,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"log"
 	"net/http"
+	"os"
 )
 
 type Welcome struct {
@@ -24,7 +25,11 @@ func main() {
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "views/index.html", nil)
 	})
-	cnn, err := sql.Open("mysql", "docker:docker@tcp(db:3306)/test_db")
+	user := os.Getenv("QOVERY_DATABASE_TEST_DB_USERNAME")
+	pass := os.Getenv("QOVERY_DATABASE_TEST_DB_PASSWORD")
+	host := os.Getenv("QOVERY_DATABASE_TEST_DB_HOST")
+	connectionString := fmt.Sprintf("%s:%s@%s:3306/test_db",user,pass,host)
+	cnn, err := sql.Open("mysql", connectionString)
 	if err != nil {
 		log.Fatal(err)
 	}
